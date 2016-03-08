@@ -11,14 +11,11 @@
     </tr>
     <tbody>
     <tr ng-repeat="container in containers">
-
         <td><a href="containers/{{ container.Id }}">{{ container.Id | trimId }}</a></td>
         <td>{{ container.Names | containerName }}</td>
         <td>{{ container.Image}}</td>
         <td>{{ container.Command  }}</td>
         <td>{{ container.Status }}</td>
         <td>{{ container.Created | dateFilter }}</td>
-
     </tr>
-
 </table>
