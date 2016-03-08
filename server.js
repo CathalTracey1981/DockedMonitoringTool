@@ -3,12 +3,12 @@
 // ===================================================================== \\
 
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // ============================== configuration ========================= \\
 
+var app = express();
 var port = process.env.PORT || 3000; // set our port
 
 // get all data/stuff of the body (POST) parameters
