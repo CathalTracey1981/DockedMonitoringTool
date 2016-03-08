@@ -1,11 +1,9 @@
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
-	// home page
 		.when('/', {
 			templateUrl: 'views/home.html',
 			controller: 'MainController'
 		})
-		// Info Page
 		.when('/info', {
 			templateUrl: 'views/info.html',
 			controller: 'infoController'
