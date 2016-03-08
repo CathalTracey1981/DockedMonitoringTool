@@ -1,0 +1,63 @@
+<br/>
+<div class="container">
+    <table class="table table-striped " align="center">
+        <tbody>
+        <tr>
+            <td>Id:</td>
+            <td>{{images.Id }}</td>
+        </tr>
+        <tr>
+            <td>Parent:</td>
+            <td>{{images.Parent }}</td>
+        </tr>
+        <tr>
+            <td>Created:</td>
+            <td>{{images.Created | dateCreated }}</td>
+        </tr>
+        <tr>
+            <td>Docker Version:</td>
+            <td>{{images.DockerVersion }}</td>
+        </tr>
+        <tr>
+            <td>Architecture:</td>
+            <td>{{images.Architecture }}</td>
+        </tr>
+        <tr>
+            <td>Operating System:</td>
+            <td>{{images.Os }}</td>
+        </tr>
+        <tr>
+            <td>Virtual Size:</td>
+            <td>{{images.VirtualSize }}</td>
+        </tr>
+        <tr>
+            <td>Container Config Env:</td>
+            <td>
+                <p ng-repeat="val in images.ContainerConfig.Env">
+                    {{ val }}
+                </p>
+            </td>
+        </tr>
+    </table>
+    <h3 align="center">Image History</h3>
+
+    <table class="table" align="center">
+        <tbody >
+        <tr class="table_heading">
+            <th>ID</th>
+            <th>Created</th>
+            <th>Created By</th>
+            <th>Tags</th>
+            <th>Size</th>
+        </tr>
+        <tr ng-repeat="ima in image">
+            <td>{{ ima.Id }}</td>
+            <td>{{ ima.Created | dateFilter}}</td>
+            <td>{{ ima.CreatedBy}}</td>
+            <td>{{ ima.Tags}}</td>
+            <td>{{ ima.Size | convertToBytes }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <td><button class="button btn-danger btn-lg" ng-click="remove(image.Id)">Delete</button></td>
+</div>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{Docked node_modules}" />
+    <file url="file://$PROJECT_DIR$/public/js/controllers/InfoCtrl.js" libraries="{angular, angular-protractor-DefinitelyTyped}" />
+  </component>
+</project>

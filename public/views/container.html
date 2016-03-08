@@ -1,0 +1,83 @@
+<table width=100%>
+    <tr>
+        <td valign="top">
+            <table class="table table-striped">
+                <h3 class="table_heading">Container Details</h3>
+                <tr>
+                    <td><strong>Name:</strong></td>
+                    <td>{{ container.Name }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Created:</strong></td>
+                    <td>{{ container.Created | dateCreated }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Path:</strong></td>
+                    <td>{{ container.Path }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Id:</strong></td>
+                    <td>{{ container.Id }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Image:</strong></td>
+                    <td><a href="images/{{container.Image}}">{{container.Image }}</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Stop Container:</strong></td>
+                    <td><button class="btn button" ng-click="stop(container.Id)">Stop</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Start Container:</strong></td>
+                    <td><button class="btn button" ng-click="start(container.Id)">Start</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Delete Container:</strong></td>
+                    <td><button class="btn button" ng-click="remove(container.Id)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td><strong>Stats:</strong></td>
+                    <td><a href="stats/{{ container.Id }}">Stats</a></td>
+                </tr>
+            </table>
+        </td>
+        <td valign="top">
+            <table class="table table-striped">
+                <h3 class="table_heading">State Details</h3>
+                <tr>
+                    <td><strong>Running:</strong></td>
+                    <td>{{ container.State.Running }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Paused:</strong></td>
+                    <td>{{ container.State.Paused }}</td>
+                </tr>
+                <td><strong>Dead:</strong></td>
+                <td>{{ container.State.Dead }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Pid:</strong></td>
+                    <td>{{ container.State.Pid }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Exit Code:</strong></td>
+                    <td>{{ container.State.ExitCode }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Error:</strong></td>
+                    <td>{{ container.State.Error }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Started:</strong></td>
+                    <td>{{ container.State.StartedAt | dateCreated }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Finished:</strong></td>
+                    <td>{{ container.State.FinishedAt | dateCreated}}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+

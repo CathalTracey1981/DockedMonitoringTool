@@ -1,0 +1,39 @@
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input class="form-control" placeholder="tomcat:latest" ng-model="pull.name"></td>
+            <td><button class="btn btn-primary" ng-click="pullImage()">Pull Image</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <div class="wrapper">
+        <input type="text" class="form-control" id="filter" placeholder="Search Images" ng-model="filter" />
+    </div>
+</div>
+<br/>
+<div class="container">
+    <br/>
+    <table class="table table-striped" align="center">
+        <thead>
+        <tr class="table_heading">
+            <th>Id</th>
+            <th>Repository</th>
+            <th>VirtualSize</th>
+            <th>Created</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="image in images | filter:repositoryName | filter:filter | filter:dateFilter | filter:convertToBytes | filter:trimId | orderBy:date">
+            <td><a href="images/{{ image.Id}}">{{ image.Id| trimId }}</a></td>
+            <td>{{ image.RepoTags | repositoryName }}</td>
+            <td>{{ image.VirtualSize | convertToBytes}}</td>
+            <td>{{ image.Created | dateFilter }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
