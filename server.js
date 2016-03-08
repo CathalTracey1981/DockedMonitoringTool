@@ -7,7 +7,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-// configuration ===========================================
+// ============================== configuration ========================= \\
 
 var port = process.env.PORT || 3000; // set our port
 
@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-f
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/public')); // set the static files location /public
 
-// routes ==================================================
+// =============================== routes =============================== \\
 require('./app/routes')(app); // pass our application into our routes
 
-// start app ===============================================
+// =============================== start app ============================ \\
 app.listen(3000);
 console.log('Listening on port ' + port);
 exports = module.exports = app; // expose app
