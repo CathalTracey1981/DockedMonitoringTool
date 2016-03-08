@@ -10,7 +10,10 @@ Instructions
    (This will open a port at 4243 so the application can communicate with Docker)
                                                                                                 
 3 - npm install
+
 4 - bower install
+
 5 - type 'node server' into terminal
+
 6 - That's it.
 
