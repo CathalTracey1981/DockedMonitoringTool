@@ -28,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="image in images | filter:repositoryName | filter:filter | filter:dateFilter | filter:convertToBytes | filter:trimId | orderBy:date">
+        <tr ng-repeat="image in images | filter:filter">
             <td><a href="images/{{ image.Id}}">{{ image.Id| trimId }}</a></td>
             <td>{{ image.RepoTags | repositoryName }}</td>
             <td>{{ image.VirtualSize | convertToBytes}}</td>

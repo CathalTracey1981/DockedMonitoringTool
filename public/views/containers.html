@@ -10,7 +10,7 @@
         <th>Created</th>
     </tr>
     <tbody>
-    <tr ng-repeat="container in containers | filter:dateFilter | filter:containerName | filter:trimId | orderBy:date">
+    <tr ng-repeat="container in containers">
 
         <td><a href="containers/{{ container.Id }}">{{ container.Id | trimId }}</a></td>
         <td>{{ container.Names | containerName }}</td>
