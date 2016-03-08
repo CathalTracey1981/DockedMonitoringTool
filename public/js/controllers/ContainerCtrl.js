@@ -31,8 +31,6 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             $scope.container = data;
         });
     };
-
-
 });
 
 

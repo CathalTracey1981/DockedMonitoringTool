@@ -10,7 +10,6 @@ angular.module('filters', [])
             });
             return data;
         };
-
     })
     .filter('repositoryName', function () {
         'use strict';

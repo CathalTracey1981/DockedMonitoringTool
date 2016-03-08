@@ -36,7 +36,5 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/stats.html',
 			controller: 'statsController'
 		});
-
 	$locationProvider.html5Mode(true);
-
 }]);

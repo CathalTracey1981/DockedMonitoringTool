@@ -9,7 +9,4 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
             console.log($scope.pull);
         });
     };
-
-
-
 });

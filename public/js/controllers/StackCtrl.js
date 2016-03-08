@@ -1,6 +1,5 @@
 angular.module('StackCtrl', []).controller('stackController', function($scope, $http) {
 
-
     // =========== Mean Stack ====================
     $http.get("/mongoImage/").success(function (data) {
         console.log(data);
@@ -11,7 +10,6 @@ angular.module('StackCtrl', []).controller('stackController', function($scope, $
         console.log(data);
         $scope.node = data;
     });
-
 
     //========== Java Stack ====================
     $http.get("/javaImage/").success(function (data) {
