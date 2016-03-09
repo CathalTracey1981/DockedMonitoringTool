@@ -5,14 +5,20 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+var flash = require('connect-flash');
 
 
 // ============================== configuration ========================= \\
 
 var app = express();
 var port = process.env.PORT || 3000; // set our port
+
+var session = require('express-session');
+
+app.use(session({ cookie: { maxAge: 60000 },
+    secret: 'woot',
+    resave: false,
+    saveUninitialized: false}));
 
 // get all data/stuff of the body (POST) parameters
 app.use(bodyParser.json()); // parse application/json
@@ -22,10 +28,16 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-f
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(express.static(__dirname + '/public')); // set the static files location /public
 
+app.use(flash());
+app.use(function(req, res, next){
+    res.locals.success = req.flash('success');
+    res.locals.errors = req.flash('errored');
+    next();
+});
 // =============================== routes =============================== \\
 require('./app/routes')(app); // pass our application into our routes
 
-// =============================== start app ============================ \\
+// =============================== start app ============================= \\
 app.listen(3000);
 console.log('Listening on port ' + port);
 exports = module.exports = app; // expose app

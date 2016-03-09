@@ -1,5 +1,7 @@
 var request = require('request');
 var Docker = require('dockerode');
+var mongojs = require('mongojs');
+var db = mongojs('dockerdb', ['dockerdb']);
 var docker = new Docker({host: 'http://192.168.99.100', port: 4243});
 module.exports = function(app) {
 
@@ -185,6 +187,38 @@ module.exports = function(app) {
 		});
 	});
 
+	// ========================= Database =====================================
+
+	// Add new user to database
+	app.post('/dockerdb', function(req, res){
+		console.log(req.body);
+		db.dockerdb.insert(req.body, function (err, doc) {
+			res.json(doc);
+		});
+	});
+
+	// Authenticate user
+	app.post('/login/', function(req, res){
+
+		var email = req.body.email;
+		var password = req.body.password;
+		db.dockerdb.findOne({email: email, password:password}, function (err, user) {
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
+			if (!user){
+				console.log("User Not Found!");
+				req.flash('errored', 'Could not update your name, please contact our support team');
+				return res.status(404).send();
+			}
+			console.log(req.body);
+			req.flash('success', 'Your name was updated');
+			return res.status(200).send();
+		});
+
+
+	});
 	// ================================ frontend routes =====================================
 	// route to handle all angular requests
 	app.get('*', function(req, res) {

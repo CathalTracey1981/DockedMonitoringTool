@@ -4,9 +4,13 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "chart.js": "^1.0.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.1",
     "dockerode": "^2.2.9",
     "express": "^4.5.1",
+    "express-session": "^1.13.0",
     "method-override": "^2.0.2",
+    "mongojs": "^2.3.0",
     "mongoose": "^4.4.6",
     "request": "^2.69.0"
   }
