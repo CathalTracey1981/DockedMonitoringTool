@@ -10,5 +10,6 @@ angular.module('App',
                'ContainerCtrl',
                'CreateCtrl',
                'StatsCtrl',
-               'StackCtrl'
+               'StackCtrl',
+               'RegisterCtrl'
               ]);
