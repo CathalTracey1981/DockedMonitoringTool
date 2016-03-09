@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
+
 // ============================== configuration ========================= \\
 
 var app = express();
