@@ -192,8 +192,25 @@ module.exports = function(app) {
 	// Add new user to database
 	app.post('/dockerdb', function(req, res){
 		console.log(req.body);
-		db.dockerdb.insert(req.body, function (err, doc) {
-			res.json(doc);
+		// Check if email is already used
+		var email = req.body.email;
+		db.dockerdb.findOne({email: email}, function (err, user) {
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
+			if (user){
+				console.log("Already used!");
+				return res.status(500).send();
+			}
+			else{
+				// If email not in use, add new user to database
+				db.dockerdb.insert(req.body, function (err, doc) {
+					//res.json(doc);
+				});
+
+				return res.status(200).send();
+			}
 		});
 	});
 
