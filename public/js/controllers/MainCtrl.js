@@ -6,7 +6,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 	// If all fields are filled in with valid data, the user is added to the database
 	$scope.login = function(){
 		console.log($scope.log);
-		if($scope.log == null){
+		if($scope.log == null || $scope.log == ""){
 			$scope.log = "";
 		}else{
 			$http.post("/login/", $scope.log).success(function (data) {

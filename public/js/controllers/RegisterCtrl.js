@@ -6,7 +6,7 @@ angular.module('RegisterCtrl', []).controller('RegisterController', function($sc
     // If all fields are filled in with valid data, the user is added to the database
     $scope.register = function(){
         console.log($scope.reg);
-        if($scope.reg == null){
+        if($scope.reg == null || $scope.reg == ""){
             $scope.reg = "";
         }else{
             $http.post("/dockerdb/", $scope.reg).success(function (data) {
