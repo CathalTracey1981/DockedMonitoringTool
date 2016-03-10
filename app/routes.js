@@ -209,7 +209,7 @@ module.exports = function(app) {
 			}
 			if (!user){
 				console.log("User Not Found!");
-				req.flash('errored', 'Could not update your name, please contact our support team');
+				req.flash('error', 'Could not update your name, please contact our support team');
 				return res.status(404).send();
 			}
 			console.log(req.body);
