@@ -11,7 +11,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		}else{
 			$http.post("/login/", $scope.log).success(function (data) {
 				$scope.log = "";
-				$location.path('/home');
+				$location.path('/containers');
 			});
 		}
 	};
