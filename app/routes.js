@@ -133,7 +133,7 @@ module.exports = function(app) {
 	// NodeJs Images
 	app.get('/nodeImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/ca7fc1468b14a3a292735f0bda7343b35f141285809ca1e018f27250300d5aea/json', function(err, response, body){
+		request.get('http://192.168.99.100:4243/images/d0a40c58df3c0396ae75618db92b6a084ebb9936937a785fedea821a9a684fe0/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
