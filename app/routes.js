@@ -203,6 +203,7 @@ module.exports = function(app) {
 			if (user){
 				console.log("Already used!");
 				return res.status(500).send();
+
 			}
 			else{
 				// If email not in use, add new user to database
