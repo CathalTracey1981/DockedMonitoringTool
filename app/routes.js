@@ -124,7 +124,7 @@ module.exports = function(app) {
 	// Mongo Images
 	app.get('/mongoImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/3c04b3c4ace81e51b0348afe83405ff24acdde2af417a1762390c8d479c99612/json', function(err, response, body){
+		request.get('http://192.168.99.100:4243/images/d383841bef5332af95d1d38a0bd0f8b26cff1b6ffe19eda77ba0833cd867ed51/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
