@@ -1,4 +1,4 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider) {
 	$routeProvider
 		.when('/', {
 			templateUrl: 'views/home.html',
@@ -14,6 +14,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 		.when('/containers', {
 			templateUrl: 'views/containers.html',
+			controller: 'containersController'
+		})
+		.when('/runningContainers', {
+			templateUrl: 'views/runningContainers.html',
 			controller: 'containersController'
 		})
 		.when('/containers/:id', {
@@ -40,5 +44,4 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/stats.html',
 			controller: 'statsController'
 		});
-	$locationProvider.html5Mode(true);
 }]);

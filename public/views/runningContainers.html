@@ -13,9 +13,8 @@
     </ul>
 </nav>
 <div>
-    <a type="button" href="#/runningContainers/" class="btn btn-primary pull-right" >Running Containers</a>
+    <a type="button" href="#/containers/" class="btn btn-primary pull-right" >All Containers</a>
 </div>
-<br/>
 <br/>
 <br/>
 <br/>
@@ -31,7 +30,7 @@
         <th>View</th>
     </tr>
     <tbody>
-    <tr ng-repeat="container in containers">
+    <tr ng-repeat="container in runningContainers">
         <td>{{ container.Id | trimId }}</td>
         <td>{{ container.Names | containerName }}</td>
         <td>{{ container.Image}}</td>

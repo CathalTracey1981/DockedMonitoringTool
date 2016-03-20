@@ -12,6 +12,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             console.log(data);
             $scope.container = data;
         });
+        location.reload();
     };
 
     // Start Container
@@ -21,6 +22,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             console.log(data);
             $scope.container = data;
         });
+        location.reload();
     };
 
     // Stop Container
@@ -30,7 +32,9 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             console.log(data);
             $scope.container = data;
         });
+        location.reload();
     };
+
 });
 
 

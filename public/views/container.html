@@ -1,17 +1,18 @@
 <!-- HEADER -->
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="/">Docked</a>
+        <a class="navbar-brand" href="#/">Docked</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="/containers">Containers</a></li>
-        <li><a href="/create">Create Container</a></li>
-        <li><a href="/images">Images</a></li>
-        <li><a href="/stack">Stacks</a></li>
-        <li><a href="/info">Info</a></li>
-        <li><a href="/">Logout</a></li>
+        <li><a href="#/containers">Containers</a></li>
+        <li><a href="#/create">Create Container</a></li>
+        <li><a href="#/images">Images</a></li>
+        <li><a href="#/stack">Stacks</a></li>
+        <li><a href="#/info">Info</a></li>
+        <li><a href="#/">Logout</a></li>
     </ul>
 </nav>
+
 <table width=100%>
     <tr>
         <td valign="top">
@@ -35,19 +36,19 @@
                 </tr>
                 <tr>
                     <td><strong>Image:</strong></td>
-                    <td><a href="images/{{container.Image}}">{{container.Image }}</a></td>
+                    <td><a href="#/images/{{container.Image}}">{{container.Image }}</a></td>
                 </tr>
                 <tr>
                     <td><strong>Stop Container:</strong></td>
-                    <td><button class="btn button" ng-click="stop(container.Id)">Stop</button></td>
+                    <td><button class="btn-warning btn-lg button " ng-click="stop(container.Id)">Stop</button></td>
                 </tr>
                 <tr>
                     <td><strong>Start Container:</strong></td>
-                    <td><button class="btn button" ng-click="start(container.Id)">Start</button></td>
+                    <td><button class="btn-success btn-lg button" ng-click="start(container.Id)">Start</button></td>
                 </tr>
                 <tr>
                     <td><strong>Delete Container:</strong></td>
-                    <td><button class="btn button" ng-click="remove(container.Id)">Delete</button></td>
+                    <td><button class="btn-danger btn-lg button" ng-click="remove(container.Id)">Delete</button></td>
                 </tr>
             </table>
         </td>

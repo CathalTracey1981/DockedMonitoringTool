@@ -3,6 +3,7 @@ var Docker = require('dockerode');
 var mongojs = require('mongojs');
 var db = mongojs('dockerdb', ['dockerdb']);
 var docker = new Docker({host: 'http://192.168.99.100', port: 4243});
+var url = "http://192.168.99.100:4243";
 module.exports = function(app) {
 
 	// ===================================== server routes ================================================
@@ -10,7 +11,7 @@ module.exports = function(app) {
 	// ============= Info =====================
 	app.get('/info', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/info', function(err, response, body){
+		request.get(url + '/info', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -21,17 +22,25 @@ module.exports = function(app) {
 	// All Containers
 	app.get('/containers/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/containers/json?all=1', function(err, response, body){
+		request.get(url + '/containers/json?all=1', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
 	});
 
+	// Running Containers
+	app.get('/runningContainers/', function (req, res) {
+		console.log('I received a GET request');
+		request.get(url + '/containers/json', function(err, response, body){
+			var str = JSON.parse(body);
+			res.jsonp(str);
+		});
+	});
 	// Container
 	app.get('/containers/:id', function (req, res) {
 		console.log('I received a GET request');
 		var id = req.params.id;
-		request.get('http://192.168.99.100:4243/containers/' + id + '/json', function(err, response, body){
+		request.get(url + '/containers/' + id + '/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.json(str);
 		});
@@ -41,25 +50,27 @@ module.exports = function(app) {
 	app.post('/containers/:id/start', function (req, res) {
 		console.log('I received a POST request');
 		var id = req.params.id;
-		request.post('http://192.168.99.100:4243/containers/' + id + '/start', function(err, response, body){
+		request.post(url + '/containers/' + id + '/start', function(err, response, body){
 			console.log("Container " + id + " was started");
 		});
+
 	});
 
 	// Stop Container
 	app.post('/containers/:id/stop', function (req, res) {
 		console.log('I received a POST request');
 		var id = req.params.id;
-		request.post('http://192.168.99.100:4243/containers/' + id + '/stop', function(err, response, body){
+		request.post(url + '/containers/' + id + '/stop', function(err, response, body){
 			console.log("Container " + id + " was stopped");
 		});
+
 	});
 
 	// Delete Container
 	app.delete('/containers/:id', function (req, res) {
 		console.log('I received a DELETE request');
 		var id = req.params.id;
-		request.del('http://192.168.99.100:4243/containers/' + id, function(err, response, body){
+		request.del(url + '/containers/' + id, function(err, response, body){
 			console.log("Container " + id + " was deleted");
 		});
 	});
@@ -77,7 +88,7 @@ module.exports = function(app) {
 	// All Images
 	app.get('/images/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/json?all=1', function(err, response, body){
+		request.get(url + '/images/json?all=1', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -87,7 +98,17 @@ module.exports = function(app) {
 	app.get('/images/:id', function (req, res) {
 		console.log('I received a GET request');
 		var id = req.params.id;
-		request.get("http://192.168.99.100:4243/images/" + id + "/json", function(err, response, body){
+		request.get(url + "/images/" + id + "/json", function(err, response, body){
+			var str = JSON.parse(body);
+			res.json(str);
+		});
+	});
+
+	// Image
+	app.get('/id/:id', function (req, res) {
+		console.log('I received a GET request');
+		var id = req.params.id;
+		request.get(url + "/images/" + id + "/json", function(err, response, body){
 			var str = JSON.parse(body);
 			res.json(str);
 		});
@@ -97,7 +118,7 @@ module.exports = function(app) {
 	app.delete('/images/:id', function (req, res) {
 		console.log('I received a DELETE request');
 		var id = req.params.id;
-		request.del('http://192.168.99.100:4243/images/' + id, function(err, response, body){
+		request.del(url + '/images/' + id, function(err, response, body){
 			console.log("Image " + id + " was deleted");
 			res.json(body);
 		});
@@ -114,7 +135,7 @@ module.exports = function(app) {
 	app.get('/images/:id/history', function (req, res) {
 		console.log('I received a GET request');
 		var id = req.params.id;
-		request.get("http://192.168.99.100:4243/images/" + id + "/history", function(err, response, body){
+		request.get(url + "/images/" + id + "/history", function(err, response, body){
 			var str = JSON.parse(body);
 			res.json(str);
 		});
@@ -124,7 +145,7 @@ module.exports = function(app) {
 	// Mongo Images
 	app.get('/mongoImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/d383841bef5332af95d1d38a0bd0f8b26cff1b6ffe19eda77ba0833cd867ed51/json', function(err, response, body){
+		request.get(url + '/images/d383841bef5332af95d1d38a0bd0f8b26cff1b6ffe19eda77ba0833cd867ed51/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -133,7 +154,7 @@ module.exports = function(app) {
 	// NodeJs Images
 	app.get('/nodeImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/d0a40c58df3c0396ae75618db92b6a084ebb9936937a785fedea821a9a684fe0/json', function(err, response, body){
+		request.get(url + '/images/d0a40c58df3c0396ae75618db92b6a084ebb9936937a785fedea821a9a684fe0/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -143,7 +164,7 @@ module.exports = function(app) {
 	// Java Images
 	app.get('/javaImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/31e7de89e3f8e82de88c0844032b1c0f4083da0c0446ff9ce94c1f4ff31cd36f/json', function(err, response, body){
+		request.get(url + '/images/31e7de89e3f8e82de88c0844032b1c0f4083da0c0446ff9ce94c1f4ff31cd36f/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -152,7 +173,7 @@ module.exports = function(app) {
 	// Tomcat Images
 	app.get('/tomcatImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/077f6fc7781f14598cb3b55a495d687b9ec5bfaa7024dc8eae255df457bb7bef/json', function(err, response, body){
+		request.get(url + '/images/077f6fc7781f14598cb3b55a495d687b9ec5bfaa7024dc8eae255df457bb7bef/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -161,7 +182,7 @@ module.exports = function(app) {
 	// Jetty Images
 	app.get('/jettyImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/3d7ef12acbeeeeffe52860a567d68f8f76684931c2d60279eeda67212fc5f6bb/json', function(err, response, body){
+		request.get(url + '/images/3d7ef12acbeeeeffe52860a567d68f8f76684931c2d60279eeda67212fc5f6bb/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -170,7 +191,7 @@ module.exports = function(app) {
 	// MySql Images
 	app.get('/mySqlImage/', function (req, res) {
 		console.log('I received a GET request');
-		request.get('http://192.168.99.100:4243/images/50806c71cd84eb5b3bc15060d3aa60c8963c7df6cc6ceff9a7cb5c27b62a01f4/json', function(err, response, body){
+		request.get(url + '/images/50806c71cd84eb5b3bc15060d3aa60c8963c7df6cc6ceff9a7cb5c27b62a01f4/json', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -182,7 +203,7 @@ module.exports = function(app) {
 	app.get('/containers/:id/stats', function (req, res) {
 		console.log('I received a GET request');
 		var id = req.params.id;
-		request.get('http://192.168.99.100:4243/containers/' + id + '/stats?stream=false', function(err, response, body){
+		request.get(url + '/containers/' + id + '/stats?stream=false', function(err, response, body){
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -208,7 +229,6 @@ module.exports = function(app) {
 			else{
 				// If email not in use, add new user to database
 				db.dockerdb.insert(req.body, function (err, doc) {
-					//res.json(doc);
 				});
 
 				return res.status(200).send();
@@ -228,7 +248,7 @@ module.exports = function(app) {
 			}
 			if (!user){
 				console.log("User Not Found!");
-				req.flash('error', 'Could not update your name, please contact our support team');
+				req.flash('error', '');
 				return res.status(404).send();
 			}
 			console.log(req.body);
