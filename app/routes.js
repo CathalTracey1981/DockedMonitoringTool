@@ -54,7 +54,6 @@ module.exports = function(app) {
 		request.post(url + '/containers/' + id + '/start', function(err, response, body){
 			console.log("Container " + id + " was started");
 		});
-
 	});
 
 	// Stop Container
@@ -64,7 +63,6 @@ module.exports = function(app) {
 		request.post(url + '/containers/' + id + '/stop', function(err, response, body){
 			console.log("Container " + id + " was stopped");
 		});
-
 	});
 
 	// Rename a Container
@@ -76,7 +74,6 @@ module.exports = function(app) {
 			console.log("Container " + id + " was renamed");
 		});
 	});
-
 
 	// Delete Container
 	app.delete('/containers/:id', function (req, res) {
@@ -97,6 +94,7 @@ module.exports = function(app) {
 	});
 
 	// ============= Images =====================
+
 	// All Images
 	app.get('/images/', function (req, res) {
 		console.log('I received a GET request');
@@ -108,16 +106,6 @@ module.exports = function(app) {
 
 	// Image
 	app.get('/images/:id', function (req, res) {
-		console.log('I received a GET request');
-		var id = req.params.id;
-		request.get(url + "/images/" + id + "/json", function(err, response, body){
-			var str = JSON.parse(body);
-			res.json(str);
-		});
-	});
-
-	// Image
-	app.get('/id/:id', function (req, res) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + "/images/" + id + "/json", function(err, response, body){
@@ -209,7 +197,6 @@ module.exports = function(app) {
 		});
 	});
 
-
 	// ========================== Statistics =======================================
 
 	app.get('/containers/:id/stats', function (req, res) {
@@ -260,16 +247,13 @@ module.exports = function(app) {
 			}
 			if (!user){
 				console.log("User Not Found!");
-				req.flash('error', '');
 				return res.status(404).send();
 			}
 			console.log(req.body);
-			req.flash('success', 'Your name was updated');
 			return res.status(200).send();
 		});
-
-
 	});
+
 	// ================================ frontend routes =====================================
 	// route to handle all angular requests
 	app.get('*', function(req, res) {

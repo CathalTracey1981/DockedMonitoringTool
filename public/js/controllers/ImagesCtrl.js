@@ -1,4 +1,4 @@
-angular.module('ImagesCtrl', []).controller('imagesController', function($scope, $http, $routeParams, $location) {
+angular.module('ImagesCtrl', []).controller('imagesController', function($scope, $http) {
     $http.get("/images/").success(function (data) {
         console.log(data);
         $scope.images = data;
