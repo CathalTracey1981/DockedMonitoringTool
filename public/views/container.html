@@ -13,6 +13,13 @@
     </ul>
 </nav>
 
+    <div class="form-group col-xs-6">
+        <input type="text" name="rename" id="rename" class="form-control input-lg" ng-model="rename.text" placeholder="Rename" ng-required="required">
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <input type="submit" class="btn btn-lg btn-success" ng-click="renameContainer()" value="Rename">
+    </div>
+
 <table width=100%>
     <tr>
         <td valign="top">
@@ -40,7 +47,7 @@
                 </tr>
                 <tr>
                     <td><strong>Stop Container:</strong></td>
-                    <td><button class="btn-warning btn-lg button " ng-click="stop(container.Id)">Stop</button></td>
+                    <td><button class="btn-warning btn-lg button" ng-click="stop(container.Id)">Stop</button></td>
                 </tr>
                 <tr>
                     <td><strong>Start Container:</strong></td>
@@ -50,6 +57,7 @@
                     <td><strong>Delete Container:</strong></td>
                     <td><button class="btn-danger btn-lg button" ng-click="remove(container.Id)">Delete</button></td>
                 </tr>
+
             </table>
         </td>
         <td valign="top">

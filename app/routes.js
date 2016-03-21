@@ -36,6 +36,7 @@ module.exports = function(app) {
 			res.jsonp(str);
 		});
 	});
+
 	// Container
 	app.get('/containers/:id', function (req, res) {
 		console.log('I received a GET request');
@@ -65,6 +66,17 @@ module.exports = function(app) {
 		});
 
 	});
+
+	// Rename a Container
+	app.post('/containers/:id/rename', function (req, res) {
+		console.log('I received a POST request');
+		var name = req.body.text;
+		var id = req.params.id;
+		request.post(url + '/containers/' + id + '/rename?name=' + name, function(err, response, body){
+			console.log("Container " + id + " was renamed");
+		});
+	});
+
 
 	// Delete Container
 	app.delete('/containers/:id', function (req, res) {
@@ -198,7 +210,7 @@ module.exports = function(app) {
 	});
 
 
-    // ========================== Statistics =======================================
+	// ========================== Statistics =======================================
 
 	app.get('/containers/:id/stats', function (req, res) {
 		console.log('I received a GET request');

@@ -35,6 +35,16 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
         location.reload();
     };
 
+    // Rename a Container
+    $scope.renameContainer = function () {
+        var id = $routeParams.id;
+        $http.post("/containers/" + id + "/rename", $scope.rename).success(function (data) {
+            console.log(data);
+            $scope.container = data;
+        });
+        location.reload();
+    };
+
 });
 
 
