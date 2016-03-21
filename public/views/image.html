@@ -53,6 +53,7 @@
             </td>
         </tr>
     </table>
+
     <h3 align="center">Image History</h3>
 
     <table class="table" align="center">
@@ -64,6 +65,7 @@
             <th>Tags</th>
             <th>Size</th>
         </tr>
+
         <tr ng-repeat="ima in image">
             <td>{{ ima.Id }}</td>
             <td>{{ ima.Created | dateFilter}}</td>
@@ -77,3 +79,4 @@
     <br>
     <br>
 </div>
+
