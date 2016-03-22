@@ -1,5 +1,7 @@
 var request = require('request');
 var Docker = require('dockerode');
+
+
 var mongojs = require('mongojs');
 var db = mongojs('dockerdb', ['dockerdb']);
 var docker = new Docker({host: 'http://192.168.99.100', port: 4243});

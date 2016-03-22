@@ -12,3 +12,13 @@ body { padding-top:30px; }
 .custom {
     width: 100px !important;
 }
+.p {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 140px;
+}
+.panelRight {
+    float: right;
+    width: 30%;
+
+}

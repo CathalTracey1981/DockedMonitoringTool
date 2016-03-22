@@ -8,8 +8,11 @@
     "dockerode": "^2.2.9",
     "express": "^4.5.1",
     "express-session": "^1.13.0",
+    "fs": "0.0.2",
+    "highcharts": "^4.2.3",
     "method-override": "^2.0.2",
     "mongojs": "^2.3.0",
+    "node-highcharts": "0.0.2",
     "request": "^2.69.0"
   }
 }
