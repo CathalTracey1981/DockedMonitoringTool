@@ -12,78 +12,161 @@
         <li><a href="#/">Logout</a></li>
     </ul>
 </nav>
-
 <body>
 
-<div class="container">
-    <h1>&ensp;<strong>Network</strong></h1>
-    <div class="col-lg-3 col-md-3 col-sm-3 text-center">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><h3>Network Metrics</h3></div>
-            <div class="panel-body">
-                <canvas id="updating-chart" width="250" height="300"></canvas>
-            </div>
-        </div>
+<!-- Network -->
 
+<div class="col-lg-12 col-md-12 col-sm-12 text-center">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3>Network</h3></div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><h3>Receiving Metrics</h3></div>
-            <div class="panel-body">
-                <table class="table table-striped">
-                    <tr>
-                        <td>RX Bytes</td>
-                        <td>{{ message.network.rx_bytes }}</td>
-                    </tr>
-                    <tr>
-                        <td>RX Packets</td>
-                        <td>{{ message.network.rx_packets }}</td>
-                    </tr>
-                    <tr>
-                        <td>RX Errors</td>
-                        <td>{{ message.network.rx_errors }}</td>
-                    </tr>
-                    <tr>
-                        <td>RX Dropped</td>
-                        <td>{{ message.network.rx_dropped }}</td>
-                    </tr>
-                </table>
-
-            </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3>Network Metrics (KB)</h3></div>
+        <div class="panel-body">
+            <canvas id="updating-network" width="250" height="300"></canvas>
         </div>
-
     </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><h3>Transmitting Metrics</h3></div>
-            <div class="panel-body">
-                <table class="table table-striped">
-                    <tr>
-                        <td>TX Bytes</td>
-                        <td>{{ message.network.tx_bytes }}</td>
-                    </tr>
-                    <tr>
-                        <td>TX Packets</td>
-                        <td>{{ message.network.tx_packets }}</td>
-                    </tr>
-                    <tr>
-                        <td>TX Errors</td>
-                        <td>{{ message.network.tx_errors }}</td>
-                    </tr>
-                    <tr>
-                        <td>TX Dropped</td>
-                        <td>{{ message.network.tx_dropped }}</td>
-                    </tr>
-                </table>
-            </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3>Receiving Metrics</h3></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>RX Bytes</td>
+                    <td>{{ message.network.rx_bytes | convertToBytes }}</td>
+                </tr>
+                <tr>
+                    <td>RX Packets</td>
+                    <td>{{ message.network.rx_packets | convertToBytes }}</td>
+                </tr>
+                <tr>
+                    <td>RX Errors</td>
+                    <td>{{ message.network.rx_errors  }}</td>
+                </tr>
+                <tr>
+                    <td>RX Dropped</td>
+                    <td>{{ message.network.rx_dropped }}</td>
+                </tr>
+            </table>
         </div>
-
     </div>
-
 </div>
 
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3>Transmitting Metrics</h3></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>TX Bytes</td>
+                    <td>{{ message.network.tx_bytes | convertToBytes }}</td>
+                </tr>
+                <tr>
+                    <td>TX Packets</td>
+                    <td>{{ message.network.tx_packets | convertToBytes }}</td>
+                </tr>
+                <tr>
+                    <td>TX Errors</td>
+                    <td>{{ message.network.tx_errors  }}</td>
+                </tr>
+                <tr>
+                    <td>TX Dropped</td>
+                    <td>{{ message.network.tx_dropped }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
+</div>
+
+<!-- CPU -->
+
+<div class="col-lg-12 col-md-12 col-sm-12 text-center">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h3>CPU</h3></div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h3>Container CPU Usage (%)</h3></div>
+        <div class="panel-body">
+            <canvas id="updating-cpu" width="250" height="300"></canvas>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h3>System CPU Usage (GHz)</h3></div>
+        <div class="panel-body">
+            <canvas id="updating-system-cpu" width="250" height="300"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h3>CPU Metrics</h3></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>Kernel mode Usage</td>
+                    <td>{{ message.precpu_stats.cpu_usage.usage_in_kernelmode | convertToBytes  }}</td>
+                </tr>
+                <tr>
+                    <td>User mode Usage</td>
+                    <td>{{ message.precpu_stats.cpu_usage.usage_in_usermode | convertToBytes }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Memory -->
+
+<div class="col-lg-12 col-md-12 col-sm-12 text-center">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3>Memory</h3></div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3>Container CPU Usage (%)</h3></div>
+        <div class="panel-body">
+            <canvas id="updating-cpu1" width="250" height="300"></canvas>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3>System CPU Usage (GHz)</h3></div>
+        <div class="panel-body">
+            <canvas id="updating-system-cpu1" width="250" height="300"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-4 text-center">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3>CPU Metrics</h3></div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>Kernel mode Usage</td>
+                    <td>{{ message.precpu_stats.cpu_usage.usage_in_kernelmode | convertToBytes  }}</td>
+                </tr>
+                <tr>
+                    <td>User mode Usage</td>
+                    <td>{{ message.precpu_stats.cpu_usage.usage_in_usermode | convertToBytes }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 

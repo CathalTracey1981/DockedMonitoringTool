@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td><strong>Total Memory:</strong></td>
-            <td>{{ message.MemTotal }}</td>
+            <td>{{ message.MemTotal | convertToBytes }}</td>
         </tr>
         <tr>
             <td><strong>IPv4 Forwarding:</strong></td>
