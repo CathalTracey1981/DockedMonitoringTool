@@ -16,5 +16,12 @@ Instructions
 
 5 - type 'node server' into terminal
 
-6 - That's it.
+6 - Navigate to localhost:3000
 
+7 - That's it.
+
+Commands to delete all images and containers (Using Docker Terminal)
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi $(docker images -q)

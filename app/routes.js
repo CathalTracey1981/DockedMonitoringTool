@@ -143,61 +143,6 @@ module.exports = function(app) {
 		});
 	});
 
-	//============================ Mean Stack ======================================
-	// Mongo Images
-	app.get('/mongoImage/', function (req, res) {
-		console.log('I received a GET request');
-		request.get(url + '/images/d383841bef5332af95d1d38a0bd0f8b26cff1b6ffe19eda77ba0833cd867ed51/json', function(err, response, body){
-			var str = JSON.parse(body);
-			res.jsonp(str);
-		});
-	});
-
-	// NodeJs Images
-	app.get('/nodeImage/', function (req, res) {
-		console.log('I received a GET request');
-		request.get(url + '/images/d0a40c58df3c0396ae75618db92b6a084ebb9936937a785fedea821a9a684fe0/json', function(err, response, body){
-			var str = JSON.parse(body);
-			res.jsonp(str);
-		});
-	});
-
-	//============================ Java Stack ======================================
-	// Java Images
-	app.get('/javaImage/', function (req, res) {
-		console.log('I received a GET request');
-		request.get(url + '/images/31e7de89e3f8e82de88c0844032b1c0f4083da0c0446ff9ce94c1f4ff31cd36f/json', function(err, response, body){
-			var str = JSON.parse(body);
-			res.jsonp(str);
-		});
-	});
-
-	// Tomcat Images
-	app.get('/tomcatImage/', function (req, res) {
-		console.log('I received a GET request');
-		request.get(url + '/images/077f6fc7781f14598cb3b55a495d687b9ec5bfaa7024dc8eae255df457bb7bef/json', function(err, response, body){
-			var str = JSON.parse(body);
-			res.jsonp(str);
-		});
-	});
-
-	// Jetty Images
-	app.get('/jettyImage/', function (req, res) {
-		console.log('I received a GET request');
-		request.get(url + '/images/3d7ef12acbeeeeffe52860a567d68f8f76684931c2d60279eeda67212fc5f6bb/json', function(err, response, body){
-			var str = JSON.parse(body);
-			res.jsonp(str);
-		});
-	});
-
-	// MySql Images
-	app.get('/mySqlImage/', function (req, res) {
-		console.log('I received a GET request');
-		request.get(url + '/images/50806c71cd84eb5b3bc15060d3aa60c8963c7df6cc6ceff9a7cb5c27b62a01f4/json', function(err, response, body){
-			var str = JSON.parse(body);
-			res.jsonp(str);
-		});
-	});
 
 	// ========================== Statistics =======================================
 

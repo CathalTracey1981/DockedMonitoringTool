@@ -22,3 +22,23 @@ body { padding-top:30px; }
     width: 30%;
 
 }
+
+.borderPanel {
+    background: #449d44;
+    color: #ffffff;
+
+}
+
+.myBorder {
+    border: 1px solid #449d44;
+}
+
+.borderPanelMemory {
+    background: #ce6131;
+    color: #ffffff;
+
+}
+
+.myBorderMemory {
+    border: 1px solid #ce6131;
+}

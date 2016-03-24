@@ -13,7 +13,11 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
 
             // CPU Metrics
             var cpuUsage = data.precpu_stats.cpu_usage.total_usage / 1000000000;
-            var cpuSystemUsage = data.precpu_stats.system_cpu_usage / 10000000000000;
+            var cpuSystemUsage = data.precpu_stats.system_cpu_usage / 1000000000000;
+
+            // Memory Metrics
+            var memory = data.memory_stats.usage / 1000000;
+            var maxMemory = data.memory_stats.max_usage / 1000000;
 
             // Network Chart (tx, rx)
             var canvas = document.getElementById('updating-network'),
@@ -22,12 +26,8 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
                     labels: ['RX_Bytes','TX_Bytes'],
                     datasets: [
                         {
-                            Label: "GB",
                             fillColor: "rgb(48, 109, 171)",
-                            strokeColor: "rgba(220,220,220,0.8)",
                             highlightFill: "rgb(48, 109, 171)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            interactivityEnabled: false,
                             data: [rx, tx]
                         }
                     ]
@@ -39,10 +39,7 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
                     scaleSteps : 3,
                     scaleStepWidth : 10,
                     scaleStartValue : 0
-                    //interactivityEnabled: false,
-
                 });
-
 
             // Container CPU Usage (%)
             var canvas = document.getElementById('updating-cpu'),
@@ -51,28 +48,19 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
                     labels: ['CPU'],
                     datasets: [
                         {
-                            Label: "GB",
-                            fillColor: "rgb(21, 85, 21)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgb(21, 85, 21)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            interactivityEnabled: false,
+                            fillColor: "rgb(68, 157, 68)",
+                            highlightFill: "rgb(68, 157, 68)",
                             data: [cpuUsage]
                         }
                     ]
                 };
 
-            // Reduce the animation steps for demo clarity.
             var myLiveChart = new Chart(ctx).Bar(startingData,
                 {
-
                     animationSteps: 1,
                     scaleSteps : 3,
                     scaleStepWidth : 10,
                     scaleStartValue : 0
-
-
-
                 });
 
             // System CPU Usage
@@ -82,31 +70,68 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
                     labels: ['System CPU'],
                     datasets: [
                         {
-                            Label: "GB",
-                            fillColor: "rgb(21, 85, 21)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgb(21, 85, 21)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            interactivityEnabled: false,
+                            fillColor: "rgb(68, 157, 68)",
+                            highlightFill: "rgb(68, 157, 68)",
                             data: [ cpuSystemUsage]
                         }
                     ]
                 };
 
-            // Reduce the animation steps for demo clarity.
+
             var myLiveChart = new Chart(ctx).Bar(startingData,
                 {
-
                     animationSteps: 1,
                     scaleSteps : 3,
                     scaleStepWidth : 10,
-                    scaleStartValue : 0,
+                    scaleStartValue : 0
+                });
 
+            // memory Usage
+            var canvas = document.getElementById('updating-memory-usage'),
+                ctx = canvas.getContext('2d'),
+                startingData = {
+                    labels: ['Memory Usage'],
+                    datasets: [
+                        {
+                            Label: "GB",
+                            fillColor: "rgb(206, 97, 49)",
+                            highlightFill: "rgb(206, 97, 49)",
+                            data: [ memory]
+                        }
+                    ]
+                };
 
+            var myLiveChart = new Chart(ctx).Bar(startingData,
+                {
+                    animationSteps: 1,
+                    scaleSteps : 3,
+                    scaleStepWidth : 10,
+                    scaleStartValue : 0
+                });
 
+            // memory Usage
+            var canvas = document.getElementById('updating-max-memory-usage'),
+                ctx = canvas.getContext('2d'),
+                startingData = {
+                    labels: ['Memory Usage'],
+                    datasets: [
+                        {
+                            Label: "GB",
+                            fillColor: "rgb(206, 97, 49)",
+                            highlightFill: "rgb(206, 97, 49)",
+                            data: [ maxMemory ]
+                        }
+                    ]
+                };
+
+            var myLiveChart = new Chart(ctx).Bar(startingData,
+                {
+                    animationSteps: 1,
+                    scaleSteps : 3,
+                    scaleStepWidth : 10,
+                    scaleStartValue : 0
                 });
         });
-
     };
 
     // Function using $timeout service.
@@ -120,5 +145,7 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
 
     // Kick off the interval
     $scope.intervalFunction();
-    // };
+
+
+
 });

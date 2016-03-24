@@ -34,7 +34,7 @@ angular.module('filters', [])
         'use strict';
         // Convert bytes into readable format
         return function (bytes) {
-            var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
             if (bytes === 0) {
                 return '';
             }

@@ -23,7 +23,7 @@
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
     <div class="panel panel-primary">
-        <div class="panel-heading"><h3>Network Metrics (KB)</h3></div>
+        <div class="panel-heading"><h3>Network Metrics (MB)</h3></div>
         <div class="panel-body">
             <canvas id="updating-network" width="250" height="300"></canvas>
         </div>
@@ -31,7 +31,7 @@
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
     <div class="panel panel-primary">
-        <div class="panel-heading"><h3>Receiving Metrics</h3></div>
+        <div class="panel-heading"><h3>Receiving ({{ message.network.rx_bytes | convertToBytes }})</h3></div>
         <div class="panel-body">
             <table class="table table-striped">
                 <tr>
@@ -57,7 +57,7 @@
 
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
     <div class="panel panel-primary">
-        <div class="panel-heading"><h3>Transmitting Metrics</h3></div>
+        <div class="panel-heading"><h3>Transmitting ({{ message.network.tx_bytes | convertToBytes }})</h3></div>
         <div class="panel-body">
             <table class="table table-striped">
                 <tr>
@@ -85,31 +85,31 @@
 <!-- CPU -->
 
 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-    <div class="panel panel-success">
-        <div class="panel-heading"><h3>CPU</h3></div>
+    <div class="panel ">
+        <div class="panel-heading borderPanel"><h3>CPU</h3></div>
     </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-    <div class="panel panel-success">
-        <div class="panel-heading"><h3>Container CPU Usage (%)</h3></div>
-        <div class="panel-body">
+    <div class="panel ">
+        <div class="panel-heading borderPanel"><h3>Container Usage ({{ message.precpu_stats.cpu_usage.total_usage/1000000000 | number : 1}}%)</h3></div>
+        <div class="panel-body myBorder">
             <canvas id="updating-cpu" width="250" height="300"></canvas>
         </div>
     </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-    <div class="panel panel-success">
-        <div class="panel-heading"><h3>System CPU Usage (GHz)</h3></div>
-        <div class="panel-body">
+    <div class="panel ">
+        <div class="panel-heading borderPanel"><h3>System Usage ({{message.precpu_stats.system_cpu_usage / 1000000000000| number : 1}} GHz)</h3></div>
+        <div class="panel-body myBorder">
             <canvas id="updating-system-cpu" width="250" height="300"></canvas>
         </div>
     </div>
 </div>
 
-<div class="col-lg-4 col-md-4 col-sm-4 text-center">
-    <div class="panel panel-success">
-        <div class="panel-heading"><h3>CPU Metrics</h3></div>
-        <div class="panel-body">
+<div class="col-lg-4 col-md-4 col-sm-4 text-center ">
+    <div class="panel  ">
+        <div class="panel-heading borderPanel "><h3>CPU Metrics</h3></div>
+        <div class="panel-body myBorder">
             <table class="table table-striped">
                 <tr>
                     <td>Kernel mode Usage</td>
@@ -118,6 +118,18 @@
                 <tr>
                     <td>User mode Usage</td>
                     <td>{{ message.precpu_stats.cpu_usage.usage_in_usermode | convertToBytes }}</td>
+                </tr>
+                <tr>
+                    <td>Throttling Periods</td>
+                    <td>{{ message.precpu_stats.throttling_data.periods  }}</td>
+                </tr>
+                <tr>
+                    <td>Throttled Periods</td>
+                    <td>{{ message.precpu_stats.throttling_data.throttled_periods  }}</td>
+                </tr>
+                <tr>
+                    <td>Throttled Time</td>
+                    <td>{{ message.precpu_stats.throttling_data.throttled_time  }}</td>
                 </tr>
             </table>
         </div>
@@ -127,39 +139,43 @@
 <!-- Memory -->
 
 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-    <div class="panel panel-warning">
-        <div class="panel-heading"><h3>Memory</h3></div>
+    <div class="panel">
+        <div class="panel-heading borderPanelMemory"><h3>Memory</h3></div>
     </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-    <div class="panel panel-warning">
-        <div class="panel-heading"><h3>Container CPU Usage (%)</h3></div>
-        <div class="panel-body">
-            <canvas id="updating-cpu1" width="250" height="300"></canvas>
+    <div class="panel">
+        <div class="panel-heading borderPanelMemory"><h3>Memory Usage ({{ message.memory_stats.usage | convertToBytes  }})</h3></div>
+        <div class="panel-body myBorderMemory">
+            <canvas id="updating-memory-usage" width="250" height="300"></canvas>
         </div>
     </div>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-    <div class="panel panel-warning">
-        <div class="panel-heading"><h3>System CPU Usage (GHz)</h3></div>
-        <div class="panel-body">
-            <canvas id="updating-system-cpu1" width="250" height="300"></canvas>
+    <div class="panel">
+        <div class="panel-heading borderPanelMemory"><h3>Max Usage ({{ message.memory_stats.max_usage | convertToBytes  }})</h3></div>
+        <div class="panel-body myBorderMemory">
+            <canvas id="updating-max-memory-usage" width="250" height="300"></canvas>
         </div>
     </div>
 </div>
 
 <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-    <div class="panel panel-warning">
-        <div class="panel-heading"><h3>CPU Metrics</h3></div>
-        <div class="panel-body">
+    <div class="panel ">
+        <div class="panel-heading borderPanelMemory"><h3>Memory Metrics</h3></div>
+        <div class="panel-body myBorderMemory">
             <table class="table table-striped">
                 <tr>
-                    <td>Kernel mode Usage</td>
-                    <td>{{ message.precpu_stats.cpu_usage.usage_in_kernelmode | convertToBytes  }}</td>
+                    <td>Memory Usage</td>
+                    <td>{{ message.memory_stats.usage | convertToBytes  }}</td>
                 </tr>
                 <tr>
-                    <td>User mode Usage</td>
-                    <td>{{ message.precpu_stats.cpu_usage.usage_in_usermode | convertToBytes }}</td>
+                    <td>Max Memory Usage</td>
+                    <td>{{ message.memory_stats.max_usage | convertToBytes  }}</td>
+                </tr>
+                <tr>
+                    <td>Limit</td>
+                    <td>{{ message.memory_stats.limit | convertToBytes  }}</td>
                 </tr>
             </table>
         </div>
