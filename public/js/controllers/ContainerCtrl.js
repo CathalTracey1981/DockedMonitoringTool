@@ -1,6 +1,7 @@
 angular.module('ContainerCtrl', []).controller('containerController', function($scope, $http, $routeParams, $location) {
     var id = $routeParams.id;
 
+
     $http.get("/containers/" + id).success(function (data) {
         console.log(data);
         $scope.container = data;
@@ -11,10 +12,10 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
         var id = $routeParams.id;
         $http.delete("/containers/" + id).success(function (data) {
             console.log(data);
-            $location.path('/containers');
             $scope.container = data;
 
         });
+        $location.path('/containers');
     };
 
     // Start Container

@@ -14,6 +14,10 @@ module.exports = function(app) {
 	app.get('/info', function (req, res) {
 		console.log('I received a GET request');
 		request.get(url + '/info', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -25,6 +29,10 @@ module.exports = function(app) {
 	app.get('/containers/', function (req, res) {
 		console.log('I received a GET request');
 		request.get(url + '/containers/json?all=1', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -34,6 +42,10 @@ module.exports = function(app) {
 	app.get('/runningContainers/', function (req, res) {
 		console.log('I received a GET request');
 		request.get(url + '/containers/json', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -44,6 +56,10 @@ module.exports = function(app) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + '/containers/' + id + '/json', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.json(str);
 		});
@@ -54,6 +70,10 @@ module.exports = function(app) {
 		console.log('I received a POST request');
 		var id = req.params.id;
 		request.post(url + '/containers/' + id + '/start', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			console.log("Container " + id + " was started");
 		});
 	});
@@ -63,6 +83,10 @@ module.exports = function(app) {
 		console.log('I received a POST request');
 		var id = req.params.id;
 		request.post(url + '/containers/' + id + '/stop', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			console.log("Container " + id + " was stopped");
 		});
 	});
@@ -73,6 +97,10 @@ module.exports = function(app) {
 		var name = req.body.text;
 		var id = req.params.id;
 		request.post(url + '/containers/' + id + '/rename?name=' + name, function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			console.log("Container " + id + " was renamed");
 		});
 	});
@@ -82,6 +110,10 @@ module.exports = function(app) {
 		console.log('I received a DELETE request');
 		var id = req.params.id;
 		request.del(url + '/containers/' + id, function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			console.log("Container " + id + " was deleted");
 		});
 	});
@@ -90,6 +122,10 @@ module.exports = function(app) {
 	app.post('/create/' , function(req, res){
 		console.log(req.body);
 		docker.createContainer({Image: req.body.image, Cmd: req.body.command, name: req.body.name}, function (err, container) {
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			container.start(function (err, data) {
 			});
 		})
@@ -101,6 +137,10 @@ module.exports = function(app) {
 	app.get('/images/', function (req, res) {
 		console.log('I received a GET request');
 		request.get(url + '/images/json?all=1', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.jsonp(str);
 		});
@@ -111,6 +151,10 @@ module.exports = function(app) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + "/images/" + id + "/json", function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.json(str);
 		});
@@ -121,6 +165,10 @@ module.exports = function(app) {
 		console.log('I received a DELETE request');
 		var id = req.params.id;
 		request.del(url + '/images/' + id, function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			console.log("Image " + id + " was deleted");
 			res.json(body);
 		});
@@ -130,6 +178,10 @@ module.exports = function(app) {
 	app.post('/pull/' , function(req, res) {
 		console.log(req.body);
 		docker.pull(req.body.name, function (err, stream) {
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 		});
 	});
 
@@ -138,6 +190,10 @@ module.exports = function(app) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + "/images/" + id + "/history", function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
 			var str = JSON.parse(body);
 			res.json(str);
 		});
@@ -150,8 +206,15 @@ module.exports = function(app) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + '/containers/' + id + '/stats?stream=false', function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
+
 			var str = JSON.parse(body);
 			res.jsonp(str);
+			return res.status(200).send();
+
 		});
 	});
 
