@@ -12,7 +12,17 @@ angular.module('RegisterCtrl', []).controller('RegisterController', function($sc
             $http.post("/dockerdb/", $scope.reg).success(function (data) {
                 console.log($scope.reg);
                 $scope.reg = "";
-                $location.path('/');
+                swal({
+                    title: "Registration Successful!",
+                    type: "success",
+                    animation: "pop",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                $timeout(function() {
+                }, 1100).then(function() {
+                    $location.path('/containers');
+                });
             });
         }
     };

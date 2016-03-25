@@ -14,7 +14,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             console.log(data);
         });
         swal({
-            title: "Container Deleted!",
+            title: "\nContainer "+ subStr(id) +" Deleted!",
             type: "success",
             animation: "pop",
             timer: 1600,
@@ -34,7 +34,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             console.log(data);
         });
         swal({
-            title: "Container Started!",
+            title: "\nContainer "+ subStr(id) +" Started!",
             type: "success",
             animation: "pop",
             timer: 1600,
@@ -57,7 +57,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             $scope.container = data;
         });
         swal({
-            title: "Container Stopped!",
+            title: "\nContainer "+ subStr(id) +" Stopped!",
             type: "success",
             animation: "pop",
             timer:  1600,
@@ -78,7 +78,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             $scope.container = data;
         });
         swal({
-            title: "Container Renamed!",
+            title: "\nContainer "+ subStr(id) +" Renamed!",
             type: "success",
             animation: "pop",
             timer: 1600,
@@ -89,6 +89,12 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
             location.reload();
         });
     };
+
+    // Trim id for alert boxes
+    function subStr(id){
+        var str = id.substring(0,8);
+        return str;
+    }
 
 });
 

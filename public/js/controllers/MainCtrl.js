@@ -8,6 +8,19 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		console.log($scope.log);
 		if($scope.log == null || $scope.log == ""){
 			$scope.log = "";
+		}else
+		if($scope.log.email != null && $scope.log.password == 123 ){
+			swal({
+				title: "Invalid Credentials!",
+				type: "warning",
+				animation: "pop",
+				timer: 2000,
+				showConfirmButton: false
+			});
+			$timeout(function() {
+			}, 1100).then(function() {
+				$location.path('/');
+			});
 		}else{
 			$http.post("/login/", $scope.log).success(function (data) {
 				$scope.log = "";

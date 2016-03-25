@@ -9,4 +9,5 @@ angular.module('ContainersCtrl', []).controller('containersController', function
         console.log(data);
         $scope.runningContainers = data;
     });
+
 });
