@@ -8,6 +8,14 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
         $http.post("/pull/", $scope.pull).success(function () {
             console.log($scope.pull);
         });
+        swal({
+            title: "Pulling Image!",
+            type: "success",
+            animation: "pop",
+            timer: 1600,
+            showConfirmButton: false
+        });
+
     };
 
     $scope.goToImage = function (id ) {

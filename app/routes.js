@@ -61,6 +61,9 @@ module.exports = function(app) {
 				return res.status(500).send();
 			}
 			var str = JSON.parse(body);
+			if (!response){
+				return res.status(500).send();
+			}
 			res.json(str);
 		});
 	});
@@ -75,7 +78,9 @@ module.exports = function(app) {
 				return res.status(500).send();
 			}
 			console.log("Container " + id + " was started");
+
 		});
+		res.status(200).send();
 	});
 
 	// Stop Container

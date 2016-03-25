@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $location) {
+angular.module('MainCtrl', []).controller('MainController', function($scope, $http, $location, $timeout) {
 
 	// Requires all fields to be filled in
 	$scope.required = true;
@@ -11,7 +11,18 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		}else{
 			$http.post("/login/", $scope.log).success(function (data) {
 				$scope.log = "";
-				$location.path('/containers');
+				swal({
+					title: "Login Success!",
+					type: "success",
+					animation: "pop",
+					timer: 1000,
+					showConfirmButton: false
+				});
+				$timeout(function() {
+				}, 1100).then(function() {
+					$location.path('/containers');
+				});
+
 			});
 		}
 	};
