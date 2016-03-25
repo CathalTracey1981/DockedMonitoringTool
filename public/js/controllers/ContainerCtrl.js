@@ -10,7 +10,6 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
     $scope.remove = function () {
         var id = $routeParams.id;
         $http.delete("/containers/" + id).success(function (data) {
-
             console.log(data);
         });
         swal({
@@ -24,7 +23,6 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
         }, 1680).then(function() {
             $location.path('/containers');
         });
-
     };
 
     // Start Container
@@ -46,12 +44,9 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
         });
     };
 
-
-
     // Stop Container
     $scope.stop = function () {
         var id = $routeParams.id;
-
         $http.post("/containers/" + id + "/stop").success(function (data) {
             console.log(data);
             $scope.container = data;
@@ -67,7 +62,6 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
         }, 1680).then(function() {
             location.reload();
         });
-
     };
 
     // Rename a Container
