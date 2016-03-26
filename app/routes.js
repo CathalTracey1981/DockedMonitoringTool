@@ -190,6 +190,19 @@ module.exports = function(app) {
 		});
 	});
 
+	// Pull Image
+	app.post('/saveImage/' , function(req, res) {
+		console.log('I received a POST request');
+		var id = req.params.id;
+		request.post(url + '/images/create?fromImage=' + id, function(err, response, body){
+			if (err){
+				console.log(err);
+				return res.status(500).send();
+			}
+			console.log("Image " + id + " saved");
+		});
+	});
+
 	// Image History
 	app.get('/images/:id/history', function (req, res) {
 		console.log('I received a GET request');
