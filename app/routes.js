@@ -1,7 +1,5 @@
 var request = require('request');
 var Docker = require('dockerode');
-
-
 var mongojs = require('mongojs');
 var db = mongojs('dockerdb', ['dockerdb']);
 var docker = new Docker({host: 'http://192.168.99.100', port: 4243});
@@ -84,7 +82,6 @@ module.exports = function(app) {
 				return res.status(500).send();
 			}
 			console.log("Container " + id + " was started");
-
 		});
 		res.status(200).send();
 	});
@@ -240,12 +237,7 @@ module.exports = function(app) {
 					res.jsonp(str);
 					return res.status(200).send();
 				}
-
-			}catch (Exception){
-
-			}
-
-
+			}catch (Exception){}
 		});
 	});
 
