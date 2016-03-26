@@ -1,4 +1,4 @@
-angular.module('ImagesCtrl', []).controller('imagesController', function($scope, $http) {
+angular.module('ImagesCtrl', []).controller('imagesController', function($scope, $http, $timeout, $location) {
     $http.get("/images/").success(function (data) {
         console.log(data);
         $scope.images = data;
@@ -24,4 +24,23 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
             $scope.images = data;
         });
     };
+
+    $scope.createCon = function(){
+        console.log($scope.create);
+        $http.post("/create/", $scope.create).success(function (data) {
+        });
+        swal({
+            title: "Container Created!",
+            type: "success",
+            animation: "pop",
+            timer: 1600,
+            showConfirmButton: false
+        });
+        $timeout(function() {
+        }, 1680).then(function() {
+            $location.path('/containers');
+        });
+
+    }
+
 });

@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" xmlns="http://www.w3.org/1999/html">
     <div class="navbar-header">
         <a class="navbar-brand" href="#/">Docked</a>
     </div>
@@ -10,19 +10,39 @@
         <li class="moveLogout"><a href="#/">Logout</a></li>
     </ul>
 </nav>
+<div class="container col-lg-6 col-md-6 col-sm-6">
+    <h3>Pull Image</h3>
+    <div class="form-group ">
+        <input class="form-control input-lg" placeholder="tomcat:latest" ng-model="pull.name">
+    </div>
+    <div class="form-group ">
+        <button class="btn btn-primary btn-lg custom" ng-click="pullImage()">Pull</button>
+    </div>
+
+
+
+    <br>
+    <br>
+</div>
+<div class="container col-lg-6 col-md-6 col-sm-6 ">
+    <h3>Create Container from Image</h3>
+    <div class="form-group ">
+        <input class="form-control input-lg" placeholder="Image" ng-required="required" ng-model="create.image">
+    </div>
+    <div class="form-group">
+        <input class="form-control input-lg" placeholder="Command" ng-required="required" ng-model="create.command">
+    </div>
+    <div class="form-group">
+        <input class="form-control input-lg" placeholder="Name" ng-required="required" ng-model="create.name">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-lg custom" ng-click="createCon()">Add</button>
+    </div>
+    <br>
+    <br>
+
+</div>
 <div class="container">
-    <table class="table table-striped">
-        <thead>
-        </thead>
-        <tbody>
-        <tr>
-            <td><input class="form-control" placeholder="tomcat:latest" ng-model="pull.name"></td>
-            <td><button class="btn btn-primary" ng-click="pullImage()">Pull Image</button></td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <br>
     <div class="wrapper">
         <input type="text" class="form-control" id="filter" placeholder="Search Images" ng-model="filter" />
     </div>
@@ -46,7 +66,7 @@
             <td>{{ image.RepoTags | repositoryName }}</td>
             <td>{{ image.VirtualSize | convertToBytes}}</td>
             <td>{{ image.Created | dateFilter }}</td>
-            <td class="text-center"><a type="button" href="#/images/{{ image.Id}}" class="btn btn-success custom" >View</a></td>
+            <td class="text-center"><a type="button" href="#/images/{{ image.Id}}" class="btn btn-success btn-lg custom" >View</a></td>
         </tr>
         </tbody>
     </table>
