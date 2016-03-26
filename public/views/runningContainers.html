@@ -4,9 +4,8 @@
         <a class="navbar-brand" href="#/">Docked</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="#/containers">Containers</a></li>
-        <li><a href="#/create">Create Container</a></li>
         <li><a href="#/images">Images</a></li>
+        <li><a href="#/containers">Containers</a></li>
         <li><a href="#/info">Info</a></li>
         <li class="moveLogout"><a href="#/">Logout</a></li>
     </ul>
@@ -14,29 +13,53 @@
 <div>
     <a type="button" href="#/containers/" class="btn btn-primary pull-right" >All Containers</a>
 </div>
+<div class="container">
+    <h1>Create a Container</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Command</th>
+            <th>name</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input class="form-control" ng-model="create.image"></td>
+            <td><input class="form-control" ng-model="create.command"></td>
+            <td><input class="form-control" ng-model="create.name"></td>
+            <td><button class="btn btn-primary" ng-click="createCon()">Add Container</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <br/>
 <br/>
 <br/>
 <br/>
-<table class="table table-striped" align="center">
-    <thead>
-    <tr class="table_heading">
-        <th>ID</th>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Command</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>View</th>
-    </tr>
-    <tbody>
-    <tr ng-repeat="container in runningContainers">
-        <td>{{ container.Id | trimId }}</td>
-        <td>{{ container.Names | containerName }}</td>
-        <td>{{ container.Image}}</td>
-        <td>{{ container.Command  }}</td>
-        <td>{{ container.Status }}</td>
-        <td>{{ container.Created | dateFilter }}</td>
-        <td><a type="button" href="#/containers/{{ container.Id }}" class="btn btn-success" >View</a></td>
-    </tr>
-</table>
+<div class="container">
+    <h1>Running Containers</h1>
+    <table class="table table-striped" align="center">
+        <thead>
+        <tr class="table_heading">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Command</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>View</th>
+        </tr>
+        <tbody>
+        <tr ng-repeat="container in runningContainers">
+            <td>{{ container.Id | trimId }}</td>
+            <td>{{ container.Names | containerName }}</td>
+            <td>{{ container.Image}}</td>
+            <td>{{ container.Command  }}</td>
+            <td>{{ container.Status }}</td>
+            <td>{{ container.Created | dateFilter }}</td>
+            <td><a type="button" href="#/containers/{{ container.Id }}" class="btn btn-success" >View</a></td>
+        </tr>
+    </table>
+</div>

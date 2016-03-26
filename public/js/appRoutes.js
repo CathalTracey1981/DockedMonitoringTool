@@ -32,10 +32,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/image.html',
 			controller: 'imageController'
 		})
-		.when('/create/', {
-			templateUrl: 'views/create.html',
-			controller: 'createController'
-		})
 		.when('/stats/:id', {
 			templateUrl: 'views/stats.html',
 			controller: 'statsController'

@@ -19,7 +19,6 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
     };
 
     $scope.goToImage = function (id ) {
-        //$location.href = "/images/" + id;
         $http.get("/images/" + id).success(function (data) {
             console.log(data);
             $scope.images = data;

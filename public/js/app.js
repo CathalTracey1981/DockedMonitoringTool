@@ -8,7 +8,6 @@ angular.module('App',
                'InfoCtrl',
                'ContainersCtrl',
                'ContainerCtrl',
-               'CreateCtrl',
                'StatsCtrl',
                'RegisterCtrl'
               ]);
