@@ -56,15 +56,21 @@ module.exports = function(app) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + '/containers/' + id + '/json', function(err, response, body){
-			if (err){
-				console.log(err);
-				return res.status(500).send();
+			if(id){
+				try{
+					if (err){
+						console.log(err);
+						return res.status(500).send();
+					}
+					var str = JSON.parse(body);
+					if (!response){
+						return res.status(500).send();
+					}
+					res.json(str);
+				}
+				catch (Exception){}
 			}
-			var str = JSON.parse(body);
-			if (!response){
-				return res.status(500).send();
-			}
-			res.json(str);
+
 		});
 	});
 
@@ -224,14 +230,21 @@ module.exports = function(app) {
 		console.log('I received a GET request');
 		var id = req.params.id;
 		request.get(url + '/containers/' + id + '/stats?stream=false', function(err, response, body){
-			if (err){
-				console.log(err);
-				return res.status(500).send();
+			try{
+				if (id){
+					if (err){
+						console.log(err);
+						return res.status(500).send();
+					}
+					var str = JSON.parse(body);
+					res.jsonp(str);
+					return res.status(200).send();
+				}
+
+			}catch (Exception){
+
 			}
 
-			var str = JSON.parse(body);
-			res.jsonp(str);
-			return res.status(200).send();
 
 		});
 	});

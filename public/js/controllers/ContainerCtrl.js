@@ -1,6 +1,7 @@
 angular.module('ContainerCtrl', []).controller('containerController', function($scope, $http, $routeParams, $location, $timeout) {
     var id = $routeParams.id;
 
+    if(id){
     $http.get("/containers/" + id).success(function (data) {
         console.log(data);
         $scope.container = data;
@@ -88,6 +89,7 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
     function subStr(id){
         var str = id.substring(0,8);
         return str;
+    }
     }
 
 });
