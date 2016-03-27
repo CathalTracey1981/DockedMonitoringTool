@@ -148,7 +148,4 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
 
         // Kick off the interval
         $scope.intervalFunction();
-
-
-
 });

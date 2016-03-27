@@ -4,6 +4,7 @@
   "dependencies": {
     "angular-flash-alert": "^2.2.5",
     "body-parser": "^1.4.3",
+    "chai": "^3.5.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.1",
     "dockerode": "^2.2.9",
@@ -12,6 +13,7 @@
     "fs": "0.0.2",
     "highcharts": "^4.2.3",
     "method-override": "^2.0.2",
+    "mocha": "^2.4.5",
     "mongojs": "^2.3.0",
     "node-highcharts": "0.0.2",
     "request": "^2.69.0",

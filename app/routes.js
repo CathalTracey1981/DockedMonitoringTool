@@ -68,7 +68,6 @@ module.exports = function(app) {
 				}
 				catch (Exception){}
 			}
-
 		});
 	});
 
@@ -147,7 +146,7 @@ module.exports = function(app) {
 			}
 			container.start(function (err, data) {
 			});
-		})
+		});
 		res.status(200).send();
 	});
 
@@ -194,31 +193,23 @@ module.exports = function(app) {
 				res.json(body);
 				res.status(200).send();
 			}
-
 		});
-
 	});
 
 	// Pull Image
 	app.post('/pull/' , function(req, res) {
-		console.log(req.body);
-
-			docker.pull(req.body.name, function (err, stream) {
-				try {
-
-					if (err) {
-						console.log(err);
-						return res.status(500).send();
-					}
-					else {
-						return res.status(200).send();
-					}
-				} catch (Exception) {
+		docker.pull(req.body.name, function (err) {
+			try {
+				if (err) {
+					console.log(err);
+					return res.status(500).send();
 				}
-
-			});
-
-
+				else {
+					return res.status(200).send();
+				}
+			} catch (Exception) {
+			}
+		});
 	});
 
 	// Pull Image
@@ -290,7 +281,6 @@ module.exports = function(app) {
 				// If email not in use, add new user to database
 				db.dockerdb.insert(req.body, function (err, doc) {
 				});
-
 				return res.status(200).send();
 			}
 		});
@@ -298,7 +288,6 @@ module.exports = function(app) {
 
 	// Authenticate user
 	app.post('/login/', function(req, res){
-
 		var email = req.body.email;
 		var password = req.body.password;
 		db.dockerdb.findOne({email: email, password:password}, function (err, user) {
