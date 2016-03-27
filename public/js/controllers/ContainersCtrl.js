@@ -1,4 +1,4 @@
-angular.module('ContainersCtrl', []).controller('containersController', function($scope, $http, $timeout,  $location) {
+angular.module('ContainersCtrl', []).controller('containersController', function($scope, $http) {
 
     $http.get("/containers/").success(function (data) {
         console.log(data);

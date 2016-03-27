@@ -97,6 +97,7 @@ module.exports = function(app) {
 			}
 			console.log("Container " + id + " was stopped");
 		});
+		res.status(200).send();
 	});
 
 	// Rename a Container
@@ -111,6 +112,7 @@ module.exports = function(app) {
 			}
 			console.log("Container " + id + " was renamed");
 		});
+		res.status(200).send();
 	});
 
 	// Delete Container
@@ -122,8 +124,17 @@ module.exports = function(app) {
 				console.log(err);
 				return res.status(500).send();
 			}
-			console.log("Container " + id + " was deleted");
+			if (!err){
+				console.log(err);
+				return res.status(200).send();
+			}
+			if (response.statusCode !== 200){
+				console.log(err);
+				return res.status(500).send();
+			}
+
 		});
+
 	});
 
 	// Create a Container
@@ -137,6 +148,7 @@ module.exports = function(app) {
 			container.start(function (err, data) {
 			});
 		})
+		res.status(200).send();
 	});
 
 	// ============= Images =====================
@@ -177,20 +189,36 @@ module.exports = function(app) {
 				console.log(err);
 				return res.status(500).send();
 			}
-			console.log("Image " + id + " was deleted");
-			res.json(body);
+			else {
+				console.log("Image " + id + " was deleted");
+				res.json(body);
+				res.status(200).send();
+			}
+
 		});
+
 	});
 
 	// Pull Image
 	app.post('/pull/' , function(req, res) {
 		console.log(req.body);
-		docker.pull(req.body.name, function (err, stream) {
-			if (err){
-				console.log(err);
-				return res.status(500).send();
-			}
-		});
+
+			docker.pull(req.body.name, function (err, stream) {
+				try {
+
+					if (err) {
+						console.log(err);
+						return res.status(500).send();
+					}
+					else {
+						return res.status(200).send();
+					}
+				} catch (Exception) {
+				}
+
+			});
+
+
 	});
 
 	// Pull Image

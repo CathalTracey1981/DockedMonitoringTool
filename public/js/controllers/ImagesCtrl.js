@@ -5,16 +5,32 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
     });
 
     $scope.pullImage = function (){
-        $http.post("/pull/", $scope.pull).success(function () {
-            console.log($scope.pull);
-        });
-        swal({
-            title: "Pulling Image!",
-            type: "success",
-            animation: "pop",
-            timer: 1600,
-            showConfirmButton: false
-        });
+        if($scope.pull == null || $scope.pull == "")
+        {
+            $scope.error = true;
+            $scope.errorMessage = "Image name cannot be empty";
+            $("#myAlert").alert('close');
+            $timeout(function() {
+            }, 1500).then(function() {
+                location.reload();
+            });
+        }
+        else {
+            $http.post("/pull/", $scope.pull).success(function (data, status) {
+
+                console.log(data);
+                $scope.success = true;
+                $scope.successMessage = "Pulling Image";
+                $("#myAlert").alert('close');
+            }).error(function () {
+                $scope.error = true;
+                $scope.errorMessage = "Could not pull image";
+                $("#myAlert").alert('close');
+            });
+
+        }
+
+
 
     };
 
@@ -26,21 +42,30 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
     };
 
     $scope.createCon = function(){
-        console.log($scope.create);
-        $http.post("/create/", $scope.create).success(function (data) {
-        });
-        swal({
-            title: "Container Created!",
-            type: "success",
-            animation: "pop",
-            timer: 1600,
-            showConfirmButton: false
-        });
-        $timeout(function() {
-        }, 1680).then(function() {
-            $location.path('/containers');
-        });
+        if($scope.create == null || $scope.create == "")
+        {
+            $scope.error = true;
+            $scope.errorMessage = "Cannot create an empty container";
+            $("#myAlert").alert('close');
+            $timeout(function() {
+            }, 1500).then(function() {
+                location.reload();
+            });
+        }
+        else
+        {            console.log($scope.create);
+            $http.post("/create/", $scope.create).success(function (data, status) {
+                console.log(data);
+                $scope.success = true;
+                $scope.successMessage = "Container Created";
+                $("#myAlert").alert('close');
+            }).error(function () {
+                $scope.error = true;
+                $scope.errorMessage = "Could not create container";
+                $("#myAlert").alert('close');
+            });
+        }
 
-    }
+    };
 
 });

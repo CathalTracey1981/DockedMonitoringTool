@@ -10,6 +10,17 @@
         <li class="moveLogout"><a href="#/">Logout</a></li>
     </ul>
 </nav>
+
+<div ng-show="success" class = "alert alert-success alert-dismissable fade in text-center">
+    <button type="button" class= "close" data-dismiss = "alert">&times;</button>
+    <strong>{{successMessage}}</strong>
+</div>
+
+<div ng-show="error" class = "alert alert-warning alert-dismissable fade in text-center">
+    <button type="button" class= "close" data-dismiss = "alert">&times;</button>
+    <strong>{{errorMessage}}</strong>
+</div>
+
 <div class="container col-lg-6 col-md-6 col-sm-6">
     <h3>Pull Image</h3>
     <div class="form-group ">

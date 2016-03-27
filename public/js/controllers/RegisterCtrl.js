@@ -1,17 +1,15 @@
-angular.module('RegisterCtrl', []).controller('RegisterController', function($scope, $http, $location) {
+angular.module('RegisterCtrl', []).controller('RegisterController', function($scope, $http, $location, $timeout) {
 
     // Requires all fields to be filled in
     $scope.required = true;
+    $scope.error = false;
 
     // If all fields are filled in with valid data, the user is added to the database
     $scope.register = function(){
-        console.log($scope.reg);
-        if($scope.reg == null || $scope.reg == ""){
-            $scope.reg = "";
-        }else{
-            $http.post("/dockerdb/", $scope.reg).success(function (data) {
-                console.log($scope.reg);
-                $scope.reg = "";
+        $http.post("/dockerdb", $scope.reg).success(function (data, status) {
+            console.log($scope.reg);
+
+            if (status === 200) {
                 swal({
                     title: "Registration Successful!",
                     type: "success",
@@ -23,8 +21,14 @@ angular.module('RegisterCtrl', []).controller('RegisterController', function($sc
                 }, 1100).then(function() {
                     $location.path('/containers');
                 });
-            });
-        }
-    };
+            }
 
+
+        }).error(function () {
+            $scope.error = true;
+            $scope.errorMessage = "Invalid Credentials";
+            $("#myAlert").alert('close');
+        });
+
+    };
 });

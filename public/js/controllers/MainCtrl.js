@@ -2,41 +2,32 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 
 	// Requires all fields to be filled in
 	$scope.required = true;
+	$scope.error = false;
 
-	// If all fields are filled in with valid data, the user is added to the database
-	$scope.login = function(){
-		console.log($scope.log);
-		if($scope.log == null || $scope.log == ""){
-			$scope.log = "";
-		}else
-		if($scope.log.email != null && $scope.log.password == 123 ){
-			swal({
-				title: "Invalid Credentials!",
-				type: "warning",
-				animation: "pop",
-				timer: 2000,
-				showConfirmButton: false
-			});
+	$scope.login = function() {
+		if($scope.log == null || $scope.log == "")
+		{
+			$scope.error = true;
+			$scope.errorMessage = "Fields cannot be empty";
+			$("#myAlert").alert('close');
 			$timeout(function() {
-			}, 1100).then(function() {
-				$location.path('/');
-			});
-		}else{
-			$http.post("/login/", $scope.log).success(function (data) {
-				$scope.log = "";
-				swal({
-					title: "Login Success!",
-					type: "success",
-					animation: "pop",
-					timer: 1000,
-					showConfirmButton: false
-				});
-				$timeout(function() {
-				}, 1100).then(function() {
-					$location.path('/containers');
-				});
-
+			}, 1500).then(function() {
+				location.reload();
 			});
 		}
-	};
-});
+		else {
+			$http.post("/login", $scope.log).success(function (data, status) {
+				console.log($scope.log);
+				if (status === 200) {
+					$location.path('/containers');
+				}
+			}).error(function () {
+				$scope.error = true;
+				$scope.errorMessage = "Invalid Email or Password";
+				$("#myAlert").alert('close');
+			});
+		}
+	}});
+
+
+
