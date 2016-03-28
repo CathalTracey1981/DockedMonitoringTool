@@ -6,6 +6,7 @@ var app = server;
 describe('loading express', function () {
 
 // comment
+
     it('responds to /', function testSlash(done) {
         request(express)
             .get('/info')
