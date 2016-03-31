@@ -16,13 +16,12 @@ angular.module('ContainerCtrl', []).controller('containerController', function($
                 $scope.successMessage = "Container Deleted";
                 $timeout(function() {
                 }, 1500).then(function() {
-                    location.reload();
+                    $location.path("/containers");
                 });
             }).error(function () {
                 $scope.errorDeleteRunningContainer = true;
                 $scope.errorMessage = "You cannot remove a running container. Stop the container before attempting removal";
             });
-
         };
 
         // Start Container

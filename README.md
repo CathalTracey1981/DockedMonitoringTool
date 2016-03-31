@@ -20,8 +20,14 @@ Instructions
 
 7 - That's it.
 
-Commands to delete all images and containers (Using Docker Terminal)
+#Commands to delete all images and containers (Using Docker Terminal)
 # Delete all containers
 docker rm $(docker ps -a -q)
 # Delete all images
 docker rmi $(docker images -q)
+
+#Commands for cleaning Images and Containers
+#clean all containers: 
+docker ps -a | sed '1 d' | awk '{print $1}' | xargs docker rm
+
+docker images -a | sed '1 d' | awk '{print $3}' | xargs docker rmi -f

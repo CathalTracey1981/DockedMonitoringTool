@@ -77,11 +77,14 @@ module.exports = function(app) {
 		console.log('I received a POST request');
 		var id = req.params.id;
 		request.post(url + '/containers/' + id + '/start', function(err, response, body){
-			if (err){
-				console.log(err);
-				return res.status(500).send();
-			}
-			console.log("Container " + id + " was started");
+			try {
+				if (err){
+					console.log(err);
+					return res.status(500).send();
+				}
+				console.log("Container " + id + " was started");
+			}catch (Exception){}
+
 		});
 		res.status(200).send();
 	});
@@ -91,13 +94,18 @@ module.exports = function(app) {
 		console.log('I received a POST request');
 		var id = req.params.id;
 		request.post(url + '/containers/' + id + '/stop', function(err, response, body){
-			if (err){
-				console.log(err);
-				return res.status(500).send();
-			}
-			console.log("Container " + id + " was stopped");
+			try{
+				if (err){
+					console.log(err);
+					return res.status(500).send();
+				}
+
+				console.log("Container " + id + " was stopped");
+
+			}catch (Exception){}
+			res.status(200).send();
 		});
-		res.status(200).send();
+
 	});
 
 	// Rename a Container
@@ -120,18 +128,21 @@ module.exports = function(app) {
 		console.log('I received a DELETE request');
 		var id = req.params.id;
 		request.del(url + '/containers/' + id, function(err, response, body){
-			if (err){
-				console.log(err);
-				return res.status(500).send();
-			}
-			if (!err){
-				console.log(err);
-				return res.status(200).send();
-			}
-			if (response.statusCode !== 200){
-				console.log(err);
-				return res.status(500).send();
-			}
+			try {
+				if (err){
+					console.log(err);
+					return res.status(500).send();
+				}
+				if (!err){
+					console.log(err);
+					return res.status(200).send();
+				}
+				if (response.statusCode !== 200){
+					console.log(err);
+					return res.status(500).send();
+				}
+
+			}catch (Exception){}
 
 		});
 
@@ -185,15 +196,19 @@ module.exports = function(app) {
 		console.log('I received a DELETE request');
 		var id = req.params.id;
 		request.del(url + '/images/' + id, function(err, response, body){
-			if (err){
-				console.log(err);
-				return res.status(500).send();
-			}
-			else {
-				console.log("Image " + id + " was deleted");
-				res.json(body);
-				res.status(200).send();
-			}
+			try{
+				if (err){
+					console.log(err);
+					return res.status(500).send();
+				}
+				else {
+					console.log("Image " + id + " was deleted");
+					res.json(body);
+					res.status(200).send();
+				}
+
+			}catch (Exception){}
+
 		});
 	});
 
@@ -213,7 +228,7 @@ module.exports = function(app) {
 		});
 	});
 
-	// Pull Image
+	// Save Image
 	app.post('/saveImage/' , function(req, res) {
 		console.log('I received a POST request');
 		var id = req.params.id;
