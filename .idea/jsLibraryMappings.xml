@@ -3,5 +3,10 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{Docked node_modules}" />
     <file url="file://$PROJECT_DIR$/public/js/controllers/InfoCtrl.js" libraries="{angular, angular-protractor-DefinitelyTyped}" />
+    <file url="file://$PROJECT_DIR$/public/views/containers.html" libraries="{angular, angular-protractor-DefinitelyTyped, angular-route, angular-ui-router, express-DefinitelyTyped, jquery-DefinitelyTyped, mongoose-DefinitelyTyped}" />
+    <file url="file://$PROJECT_DIR$/public/views/images.html" libraries="{ECMAScript 6, HTML, angular, angular-protractor-DefinitelyTyped, jquery-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{Docked node_modules, angular, angular-protractor-DefinitelyTyped, angular-route, angular-ui-router, express-DefinitelyTyped, jquery-DefinitelyTyped, mongoose-DefinitelyTyped, ui-bootstrap-tpls}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="WebGL" />
   </component>
 </project>

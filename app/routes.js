@@ -26,7 +26,6 @@ module.exports = function(app) {
 
 	// All Containers
 	app.get('/containers/', function (req, res) {
-		console.log('I received a GET request');
 		request.get(url + '/containers/json?all=1', function(err, response, body){
 			if (err){
 				console.log(err);
@@ -39,7 +38,6 @@ module.exports = function(app) {
 
 	// Running Containers
 	app.get('/runningContainers/', function (req, res) {
-		console.log('I received a GET request');
 		request.get(url + '/containers/json', function(err, response, body){
 			if (err){
 				console.log(err);
@@ -82,11 +80,10 @@ module.exports = function(app) {
 					console.log(err);
 					return res.status(500).send();
 				}
+				res.status(200).send();
 				console.log("Container " + id + " was started");
 			}catch (Exception){}
-
 		});
-		res.status(200).send();
 	});
 
 	// Stop Container
@@ -99,13 +96,10 @@ module.exports = function(app) {
 					console.log(err);
 					return res.status(500).send();
 				}
-
 				console.log("Container " + id + " was stopped");
-
+				res.status(200).send();
 			}catch (Exception){}
-			res.status(200).send();
 		});
-
 	});
 
 	// Rename a Container

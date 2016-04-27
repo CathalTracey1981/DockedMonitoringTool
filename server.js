@@ -9,9 +9,9 @@ var methodOverride = require('method-override');
 // ============================== configuration ========================= \\
 
 var app = express();
-var port = process.env.PORT || 3000; // set our port
+var port = process.env.PORT || 3000; // set port
 
-// get all data/stuff of the body (POST) parameters
+// get all data of the body (POST) parameters
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
@@ -25,4 +25,3 @@ require('./app/routes')(app); // pass our application into our routes
 // =============================== start app ============================= \\
 app.listen(3000);
 console.log('Listening on port ' + port);
-exports = module.exports = app; // expose app

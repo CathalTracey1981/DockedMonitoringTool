@@ -3,8 +3,7 @@
 Author: Cathal Tracey
 
 Instructions
-1 - Ensure Docker is installed on your machine
-
+1 - Ensure Docker is installed on your machine (Docker-Toolbox 1.8.2c)
 
 2 - Open Docker Machine and run sudo docker -d -H unix:///var/run/docker.sock -H 0.0.0.0:4243 &. 
 

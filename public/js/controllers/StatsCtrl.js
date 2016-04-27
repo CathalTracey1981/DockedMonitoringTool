@@ -3,8 +3,6 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
 
     $scope.getStats = function () {
         if(id){
-
-
             $http.get("/containers/" + id + "/stats?stream=false").success(function (data) {
                 console.log(data);
                 $scope.message = data;
@@ -136,7 +134,7 @@ angular.module('StatsCtrl', []).controller('statsController', function($scope, $
                     });
             });
         };
-    }
+    };
         // Function using $timeout service.
         $scope.intervalFunction = function () {
             $timeout(function () {

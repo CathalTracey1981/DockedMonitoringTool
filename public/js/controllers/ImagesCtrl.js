@@ -27,11 +27,7 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
                 $scope.errorMessage = "Could not pull image";
                 $("#myAlert").alert('close');
             });
-
         }
-
-
-
     };
 
     $scope.goToImage = function (id ) {
@@ -53,7 +49,7 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
             });
         }
         else
-        {            console.log($scope.create);
+        {
             $http.post("/create/", $scope.create).success(function (data, status) {
                 console.log(data);
                 $scope.success = true;

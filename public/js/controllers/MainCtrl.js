@@ -5,13 +5,12 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 	$scope.error = false;
 
 	$scope.login = function() {
-		if($scope.log == null || $scope.log == "")
-		{
+		if ($scope.log == null || $scope.log == "") {
 			$scope.error = true;
 			$scope.errorMessage = "Fields cannot be empty";
 			$("#myAlert").alert('close');
-			$timeout(function() {
-			}, 1500).then(function() {
+			$timeout(function () {
+			}, 1500).then(function () {
 				location.reload();
 			});
 		}
@@ -28,6 +27,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 			});
 		}
 	}});
+
 
 
 
