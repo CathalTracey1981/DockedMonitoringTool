@@ -1,6 +1,6 @@
-// testing controller
+// testing infoController
 describe('infoController', function() {
-    var $httpBackend, $rootScope, createController1, authRequestHandler1;
+    var $httpBackend, $rootScope, createController1;
 
     // Set up the module
     beforeEach(module('InfoCtrl'));
@@ -22,7 +22,6 @@ describe('infoController', function() {
         $httpBackend.when('GET', '/info').respond();
 
 
-
     }));
 
     afterEach(function() {
@@ -31,7 +30,7 @@ describe('infoController', function() {
     });
 
 
-    it('should get containers', function() {
+    it('should get info', function() {
         $httpBackend.expectGET('/info');
         var controller = createController1();
         $httpBackend.flush();

@@ -1,6 +1,6 @@
-// testing controller
+// testing imageController
 describe('imageController', function() {
-    var $httpBackend, $rootScope, createController1, $routeParams;
+    var $httpBackend, $rootScope, createController1;
 
     // Set up the module
     beforeEach(module('ImageCtrl'));
@@ -21,10 +21,10 @@ describe('imageController', function() {
         // Test get images with id function
         $httpBackend.when('GET', '/images/' + 1).respond();
 
-        // Test remove image
+        // Test remove image function
         $httpBackend.when('DELETE', '/images/' + 1).respond();
 
-        // Test  image history
+        // Test image history function
         $httpBackend.when('GET', '/images/' + 1 + '/history').respond();
 
 

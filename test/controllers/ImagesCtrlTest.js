@@ -1,6 +1,6 @@
-// testing controller
+// testing imagesController
 describe('imagesController', function() {
-    var $httpBackend, $rootScope, createController1, authRequestHandler1;
+    var $httpBackend, $rootScope, createController1;
 
     // Set up the module
     beforeEach(module('ImagesCtrl'));

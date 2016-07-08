@@ -24,10 +24,6 @@ module.exports = function(config) {
       '/Users/Cathal/Documents/Docked/public/js/controllers/InfoCtrl.js',
       '/Users/Cathal/Documents/Docked/public/js/controllers/StatsCtrl.js',
       'test/**/*.js'
-
-
-
-
     ],
 
 

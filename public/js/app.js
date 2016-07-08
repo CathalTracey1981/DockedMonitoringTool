@@ -1,13 +1,13 @@
-angular.module('App',
-              ['ngRoute',
-               'appRoutes',
-               'filters',
-               'MainCtrl',
-               'ImagesCtrl',
-               'ImageCtrl',
-               'InfoCtrl',
-               'ContainersCtrl',
-               'ContainerCtrl',
-               'StatsCtrl',
-               'RegisterCtrl'
-              ]);
+angular.module('App', ['ngRoute', 'appRoutes', 'filters', 'MainCtrl', 'ImagesCtrl',
+                       'ImageCtrl', 'InfoCtrl', 'ContainersCtrl', 'ContainerCtrl',
+                       'StatsCtrl', 'RegisterCtrl']);
+
+
+
+
+
+
+
+
+
+

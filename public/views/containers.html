@@ -33,7 +33,7 @@
             <td>{{ container.Id | trimId }}</td>
             <td>{{ container.Names | containerName }}</td>
             <td>{{ container.Image}}</td>
-            <td>{{ container.Command  }}</td>
+            <td>{{ container.Command | splitCommand  }}</td>
             <td>{{ container.Status }}</td>
             <td>{{ container.Created | dateFilter }}</td>
             <td><a type="button" href="#/containers/{{ container.Id }}" class="btn btn-success" >View</a></td>

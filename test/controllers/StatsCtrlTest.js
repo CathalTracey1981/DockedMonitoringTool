@@ -18,12 +18,8 @@ describe('statsController', function() {
             return $controller('statsController', {'$scope' : $rootScope, $routeParams : {id: 1} });
         };
 
-        // Test get images with id function
-        $httpBackend.when('GET', '/containers').respond();
-
-
-
-
+        // Test get stats
+        $httpBackend.when('GET', '/containers' + 1 + "/stats?stream=false").respond();
 
     }));
 
@@ -33,13 +29,11 @@ describe('statsController', function() {
     });
 
 
-    it('should get images', function() {
+    it('should get stats', function() {
         $httpBackend.expectGET('/containers');
         var controller = createController1();
         $httpBackend.flush();
     });
-
-
 
 
 });

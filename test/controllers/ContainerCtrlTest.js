@@ -1,6 +1,6 @@
-// testing controller
+// testing containerController
 describe('containerController', function() {
-    var $httpBackend, $rootScope, createController1, $routeParams;
+    var $httpBackend, $rootScope, createController1;
 
     // Set up the module
     beforeEach(module('ContainerCtrl'));
@@ -29,8 +29,6 @@ describe('containerController', function() {
 
         // Test stop a container
         $httpBackend.when('POST', '/containers/' + 1 + "/stop").respond();
-
-
 
     }));
 
@@ -66,12 +64,6 @@ describe('containerController', function() {
         var controller = createController1();
         $httpBackend.flush();
     });
-
-    /* it('should get running containers', function() {
-     $httpBackend.expectGET('/runningContainers');
-     var controller = createController1();
-     $httpBackend.flush();
-     });*/
 
 
 });

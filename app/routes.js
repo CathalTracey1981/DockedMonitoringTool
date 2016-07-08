@@ -148,7 +148,7 @@ module.exports = function(app) {
 		docker.createContainer({Image: req.body.image, Cmd: req.body.command, name: req.body.name}, function (err, container) {
 			if (err){
 				console.log(err);
-				return res.status(500).send();
+				return res.status(404).send();
 			}
 			container.start(function (err, data) {
 			});

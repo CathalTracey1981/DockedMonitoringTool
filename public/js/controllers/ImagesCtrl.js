@@ -17,7 +17,6 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
         }
         else {
             $http.post("/pull/", $scope.pull).success(function (data, status) {
-
                 console.log(data);
                 $scope.success = true;
                 $scope.successMessage = "Pulling Image";
@@ -54,7 +53,6 @@ angular.module('ImagesCtrl', []).controller('imagesController', function($scope,
                 console.log(data);
                 $scope.success = true;
                 $scope.successMessage = "Container Created";
-                $("#myAlert").alert('close');
             }).error(function () {
                 $scope.error = true;
                 $scope.errorMessage = "Could not create container";
